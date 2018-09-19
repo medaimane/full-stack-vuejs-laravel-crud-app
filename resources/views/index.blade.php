@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="appname" content="Full Stack VueJS/Laravel">
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -18,17 +19,33 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+        <script>
+            window.Laravel = {
+                csrfToken: '{{ csrf_token() }}'
+            }
+        </script>
         
     </head>
     <body>
         <div id="app">
-            <div class="flex-center position-ref full-height">
-                <div class="content">
-                    <div class="title m-b-md">
-                        Full Stack Vue.js and Laravel
+            <navbar-component></navbar-component>
+            
+            <main role="main">
+                <!-- Main jumbotron for a primary marketing message or call to action -->
+                <div class="jumbotron">
+                    <div class="container">
+                    <h1 class="display-3">Hello, world!</h1>
+                    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
                     </div>
-                </div>
-            </div>
+                </div>    
+                <post-component></post-component>
+            </main>
+
+            <footer class="container mt-auto">
+                <p><a href="https://medaimane.github.io">Mohamed Aimane Skhairi</a> &copy; 2018</p>
+            </footer>
         </div>
     </body>
 </html>

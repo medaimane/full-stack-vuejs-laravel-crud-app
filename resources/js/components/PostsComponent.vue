@@ -5,20 +5,17 @@
                 <h4>New post</h4>
             </div>
             <div>
-                <form action="" method="post" class="form">
+                <form class="form">
                     <!-- <div class="form-group"> -->
-                        <label for="title" class="sr-only">Title</label>
                         <input type="text" name="title" placeholder="Title" class="form-control">
                     <!-- </div>
                     <div class="form-group"> -->
-                        <label for="title" class="sr-only">Description</label>
                         <input type="text" name="description" placeholder="Description" class="form-control">
                     <!-- </div>
                     <div class="form-group"> -->
-                        <label for="title" class="sr-only">Content</label>
-                        <input type="textarea" name="content" placeholder="Content" class="form-control">
+                        <textarea v-model="post.content" placeholder="Content" class="form-control"></textarea>
                     <!-- </div> -->
-                        <button class="float-right btn btn-outline-success" type="submit">Create</button>
+                        <button class="btn btn-outline-success mt-2" type="submit">Save</button>
                 </form>
             </div>
         </div>

@@ -47569,9 +47569,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -47649,7 +47646,58 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "mb-2 p-2" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", [
+        _c("form", { staticClass: "form" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", name: "title", placeholder: "Title" }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "description",
+              placeholder: "Description"
+            }
+          }),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.post.content,
+                expression: "post.content"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { placeholder: "Content" },
+            domProps: { value: _vm.post.content },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.post, "content", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-success mt-2",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Save")]
+          )
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "mb-2 p-2" }, [
       _vm._m(1),
@@ -47775,61 +47823,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-2 p-2" }, [
-      _c("div", [_c("h4", [_vm._v("New post")])]),
-      _vm._v(" "),
-      _c("div", [
-        _c(
-          "form",
-          { staticClass: "form", attrs: { action: "", method: "post" } },
-          [
-            _c("label", { staticClass: "sr-only", attrs: { for: "title" } }, [
-              _vm._v("Title")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", name: "title", placeholder: "Title" }
-            }),
-            _vm._v(" "),
-            _c("label", { staticClass: "sr-only", attrs: { for: "title" } }, [
-              _vm._v("Description")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                name: "description",
-                placeholder: "Description"
-              }
-            }),
-            _vm._v(" "),
-            _c("label", { staticClass: "sr-only", attrs: { for: "title" } }, [
-              _vm._v("Content")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "textarea",
-                name: "content",
-                placeholder: "Content"
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "float-right btn btn-outline-success",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("Create")]
-            )
-          ]
-        )
-      ])
-    ])
+    return _c("div", [_c("h4", [_vm._v("New post")])])
   },
   function() {
     var _vm = this

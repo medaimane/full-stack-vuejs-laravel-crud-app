@@ -83,7 +83,7 @@ class PostController extends Controller
     {
         if($post->delete()) {
             return new PostResource($post);
-            // return response([],200);
+            return response([],200);
         }
     }
 

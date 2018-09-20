@@ -16,7 +16,9 @@ window.Vue = require('vue');
  */
 
 Vue.component('navbar-component', require('./components/NavbarComponent.vue'));
-Vue.component('post-component', require('./components/PostComponent.vue'));
+Vue.component('posts-component', require('./components/PostsComponent.vue'));
+Vue.component('jumbotron-component', require('./components/JumbotronComponent.vue'));
+Vue.component('footer-component', require('./components/FooterComponent.vue'));
 
 const app = new Vue({
     el: '#app'

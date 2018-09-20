@@ -32,20 +32,11 @@
             <navbar-component></navbar-component>
             
             <main role="main">
-                <!-- Main jumbotron for a primary marketing message or call to action -->
-                <div class="jumbotron">
-                    <div class="container">
-                    <h1 class="display-3">Hello, world!</h1>
-                    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-                    </div>
-                </div>    
-                <post-component></post-component>
+                <jumbotron-component></jumbotron-component> 
+                <posts-component></posts-component>
             </main>
 
-            <footer class="container mt-auto">
-                <p><a href="https://medaimane.github.io">Mohamed Aimane Skhairi</a> &copy; 2018</p>
-            </footer>
+            <footer-component></footer-component>
         </div>
     </body>
 </html>

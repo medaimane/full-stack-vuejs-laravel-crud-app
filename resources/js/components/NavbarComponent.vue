@@ -17,7 +17,7 @@
             </li>
           </ul>
 
-          <form id="form-login" class="form-inline my-2 my-lg-0">
+          <form id="form-login" class="form-inline my-2 my-lg-0" hidden>
             <input id="username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username">
             <input id="password" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password">
             <button id="btn-login" class="btn btn-outline-info my-2 my-sm-0" type="submit">Login</button>

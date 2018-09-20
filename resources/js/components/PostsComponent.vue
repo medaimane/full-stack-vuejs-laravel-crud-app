@@ -1,6 +1,31 @@
 <template>
     <div class="container">
-        <div class="row mb-2 p-1">
+        <div class="mb-2 p-2">
+            <div>
+                <h4>New post</h4>
+            </div>
+            <div>
+                <form action="" method="post" class="form">
+                    <!-- <div class="form-group"> -->
+                        <label for="title" class="sr-only">Title</label>
+                        <input type="text" name="title" placeholder="Title" class="form-control">
+                    <!-- </div>
+                    <div class="form-group"> -->
+                        <label for="title" class="sr-only">Description</label>
+                        <input type="text" name="description" placeholder="Description" class="form-control">
+                    <!-- </div>
+                    <div class="form-group"> -->
+                        <label for="title" class="sr-only">Content</label>
+                        <input type="textarea" name="content" placeholder="Content" class="form-control">
+                    <!-- </div> -->
+                        <button class="float-right btn btn-outline-success" type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+        <div class="mb-2 p-2">
+            <div>
+                <h4>List of posts</h4>
+            </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
                     <li class="page-item" v-bind:class="[{disabled: !pagination.prev_page_url}]">
@@ -10,9 +35,9 @@
                         </a>
                     </li>
                     
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item active">
+                        <span class="page-link disabled">Page {{pagination.current_page}} of {{pagination.last_page}}</span>
+                    </li>
 
                     <li class="page-item" v-bind:class="[{disabled: !pagination.next_page_url}]">
                         <a class="page-link" href="#" @click="fetchPosts(pagination.next_page_url)">
@@ -24,11 +49,12 @@
             </nav>
         </div>
 
-        <div class="row">
-            <div v-for="(post) in posts" v-bind:key="post.id" class="card card-body mb-2">
+        <div class="mb-2 p-1">
+            <div v-for="(post, index) in posts" v-bind:key="post.id" class="card card-body mb-2">
                 <h2>{{post.title}}</h2>
-                <p class="text-justify">{{post.description}}</p>
-                <p><a class="float-right btn btn-sm btn-outline-secondary" href="/posts/" role="button">Details &raquo;</a></p>
+                <p class="text-justif">{{post.description}}</p>
+                <p class="text-muted">Written on {{post.created_at}} by user has id {{post.user_id}}</p>
+                <p><a class="float-right btn btn-sm btn-outline-danger" href="#" @click="deletePost(post.id, index)">Delete</a></p>
             </div>
         </div>
         <hr>
@@ -54,9 +80,9 @@ export default {
         this.fetchPosts();
     },
     methods: {
-        fetchPosts(page_url) {
+        fetchPosts(page_url = 'api/posts') { // input with default value
             let vue = this;
-            page_url = page_url || 'api/posts';
+            // page_url = page_url || 'api/posts'; // replaced by default input
             fetch(page_url)
                 .then(res => res.json())
                 .then(res => {
@@ -67,7 +93,7 @@ export default {
                 .catch(err => console.error(err));
         },
         makePagination(meta, links) {
-            console.log(meta, links);
+            // console.log(meta, links);
             let pagination = {
                 current_page: meta.current_page,
                 last_page: meta.last_page,
@@ -76,10 +102,58 @@ export default {
             }
 
             this.pagination = pagination;
+        },
+        deletePost(id, index) {
+            let vue = this;
+            if(confirm('Are you sure!')) {
+                fetch(`api/posts/${id}`, {
+                    method: 'delete'
+                }).then(res => {
+                    console.log(res);
+                    alert('Article removed');
+                    // vue.fetchPosts(); // fetch the posts again
+                    this.posts.splice(index, 1); // just remove post from posts array
+                }).catch(err => console.error(err));
+            }
         }
     }
 }
 </script>
 
+<style>
+.form {
+  width: 100%;
+  max-width: 100%;
+  padding: 15px;
+  margin: auto;
+}
+.form .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form .form-control:focus {
+  z-index: 2;
+}
+.form input[name="title"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form input[name="description"] {
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form input[name="content"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
 
 

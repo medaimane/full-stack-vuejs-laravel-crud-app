@@ -3,7 +3,7 @@
 ### About Project
 
 Full-stack simple exemple for crud application using Vue.js and Laravel.
-Version used for this project is 5.7.
+Laravel version used for this project is 5.7.
 
 ### Repo Author
 

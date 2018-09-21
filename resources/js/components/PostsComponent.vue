@@ -6,9 +6,9 @@
             </div>
             <div>
                 <form @submit.prevent="storePost()" class="form">
-                    <input v-model="post.title" id="title" type="text" placeholder="Title" class="form-control">
-                    <input v-model="post.description" id="description" type="text" placeholder="Description" class="form-control">
-                    <textarea v-model="post.content" placeholder="Content" class="form-control"></textarea>
+                    <input v-model="post.title" id="title" type="text" placeholder="Title" class="form-control" required>
+                    <input v-model="post.description" id="description" type="text" placeholder="Description" class="form-control" required>
+                    <textarea v-model="post.content" placeholder="Content" class="form-control" required></textarea>
                     <button class="btn btn-block btn-outline-success mt-2" type="submit" >Save</button>
                 </form>
             </div>
@@ -60,14 +60,15 @@ export default {
     data() {
         return {
             posts: [],
-            post: {
-                id: '',
-                user_id: '',
-                title: '',
-                description: '',
-                body: ''
-            },
-            post_id: '',
+            // post: { // define data structure for a post
+            //     id: '',
+            //     user_id: '',
+            //     title: '',
+            //     description: '',
+            //     body: ''
+            // },
+            post: {}, // use just an object
+            // post_id: '', // used to pass id with posts update request
             pagination: {},
             edit: false
         }
@@ -76,47 +77,108 @@ export default {
         this.fetchPosts();
     },
     methods: {
+
+        /**
+         * Fetch method used to get posts from server/database with pagination features
+         *  HTTP method 'GET'
+        */
         fetchPosts(page_url = 'api/posts') { // input with default value
-            let vue = this;
+            // let vue = this;
             // page_url = page_url || 'api/posts'; // replaced by default input
             fetch(page_url)
                 .then(res => res.json())
                 .then(res => {
                     console.log(res);
                     this.posts = res.data;
-                    vue.makePagination(res.meta, res.links);
+                    this.makePagination(res.meta, res.links);
                 })
-                .catch(err => console.error(err));
+                .catch(err => {
+                    swal("Oops!", "Something went wrong!", "error"); // SweetAlert error message
+                    console.error(err);
+                });
         },
+
+        /**
+         * Simple pagination setup
+        */
         makePagination(meta, links) {
             // console.log(meta, links);
-            let pagination = {
-                current_page: meta.current_page,
-                last_page: meta.last_page,
-                next_page_url: links.next,
-                prev_page_url: links.prev
-            }
+            
+            // let pagination = { // create object contain pagination props
+            //     current_page: meta.current_page,
+            //     last_page: meta.last_page,
+            //     next_page_url: links.next,
+            //     prev_page_url: links.prev
+            // }
+            // this.pagination = pagination;
 
-            this.pagination = pagination;
+            // Just set new props to pagination object directly.
+            this.pagination.current_page = meta.current_page;
+            this.pagination.last_page = meta.last_page;
+            this.pagination.next_page_url = links.next;
+            this.pagination.prev_page_url = links.prev;
         },
+
+        /**
+         * Delete method used to remove post from database
+         *  HTTP method 'DELETE'
+        */
         deletePost(id, index) {
-            let vue = this;
-            if(confirm('Are you sure!')) {
-                fetch(`api/posts/${id}`, {
-                    method: 'delete'
-                })
-                .then(res => {
-                    console.log(res);
-                    alert('Article removed');
-                })
-                .then( _ => {
-                    this.fetchPosts(); // fetch the posts again
-                    // this.posts.splice(index, 1); // just remove post from posts array
-                })
-                .catch(err => console.error(err));
-            }
+            // let vue = this;
+            // if(confirm('Are you sure!')) {
+            //     fetch(`api/posts/${id}`, {
+            //         method: 'delete'
+            //     })
+            //     .then(res => {
+            //         console.log(res);
+            //         console.log('Post removed with success');
+            //     })
+            //     .then( _ => {
+            //         this.fetchPosts(); // fetch the posts again
+            //         // this.posts.splice(index, 1); // just remove post from posts array
+            //     })
+            //     .catch(err => console.error(err));
+            // }
+
+
+            // Use SweetAlert library for alert
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this post content!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                className: "red-bg",
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    fetch(`api/posts/${id}`, {
+                        method: 'delete'
+                    })
+                    .then(res => {
+                        console.log(res);
+                        this.fetchPosts(); // fetch the posts again
+                        // this.posts.splice(index, 1); // just remove post from posts array
+                        swal("Poof! Your post has been deleted!", {
+                            icon: "success",
+                        }); // SweetAlert with options
+                    })
+                    .catch(err => {
+                        swal("Oops!", "Something went wrong!", "error"); // SweetAlert error message
+                        console.error(err);
+                    });
+                } else {
+                    swal("It Ok!","Your post is safe!"); // SweetAlert
+                }
+            });
         },
+        
+        /**
+         * Store method used to add and update post
+         *  HTTP method 'POST' and 'PUT'
+        */
         storePost() {
+
             if (!this.edit) {
                 // add post
                 fetch('api/posts', {
@@ -128,15 +190,18 @@ export default {
                 })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res);
-                    alert('New post added with success');
+                    console.log(res); 
+                    swal("Good job!", "You added new post!", "success"); // SweetAlert
                     this.fetchPosts();
                 })
                 .then(() => { 
                     this.post = {};
                     this.edit = false;
                 })
-                .catch(err => console.error(err));
+                .catch(err => {
+                    swal("Oops!", "Something went wrong!", "error"); // SweetAlert error message
+                    console.error(err);
+                });
             } else {
                 // update post
                 fetch(`api/posts/${this.post.id}`, {
@@ -149,26 +214,37 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     console.log(res);
-                    alert('New post updated with success');
+                    swal("Good job!", "You updated the post!", "success"); // SweetAlert
                 })
                 .then(() => { 
                     this.post = {};
                     this.edit = false;
                 })
-                .catch(err => console.error(err));
+                .catch(err => {
+                    swal("Oops!", "Something went wrong!", "error"); // SweetAlert error message
+                    console.error(err);
+                });
             }
         },
+
+        /**
+         * Edit method used to set data into 
+         * post prop and form inputs
+        */
         editPost(post) {
-            if(post) {
-                this.edit = true;
-                this.post = post;
-            }
+            this.edit = true;
+            this.post = post;
         }
     }
 }
 </script>
 
 <style>
+
+/**
+ * Form style
+ *
+*/
 .form {
   width: 100%;
   max-width: 100%;

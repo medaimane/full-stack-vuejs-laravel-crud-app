@@ -47538,7 +47538,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n\r\n/**\r\n * Form style\r\n *\r\n*/\n.form {\r\n  width: 100%;\r\n  max-width: 100%;\r\n  padding: 15px;\r\n  margin: auto;\n}\n.form .form-control {\r\n  position: relative;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n  height: auto;\r\n  padding: 10px;\r\n  font-size: 16px;\n}\n.form .form-control:focus {\r\n  z-index: 2;\n}\n.form input[id=\"title\"] {\r\n  margin-bottom: -1px;\r\n  border-bottom-right-radius: 0;\r\n  border-bottom-left-radius: 0;\n}\n.form input[id=\"description\"] {\r\n  margin-bottom: -1px;\r\n  border-top-left-radius: 0;\r\n  border-top-right-radius: 0;\r\n  border-bottom-right-radius: 0;\r\n  border-bottom-left-radius: 0;\n}\n.form textarea {\r\n  margin-bottom: -1px;\r\n  border-top-left-radius: 0;\r\n  border-top-right-radius: 0;\r\n  border-bottom-right-radius: 0;\r\n  border-bottom-left-radius: 0;\n}\n.form button {\r\n    margin-bottom: 10px;\r\n    border-top-left-radius: 0;\r\n    border-top-right-radius: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\r\n * SweetAlert Theming\r\n*/\r\n/* .swal-overlay {\r\n    background-image: url('/storage/background.jpg');\r\n    background-repeat: no-repeat;\r\n    background-size: 100% 100%;\r\n} */\r\n\r\n/**\r\n * Form style\r\n *\r\n*/\n.form {\r\n  width: 100%;\r\n  max-width: 100%;\r\n  padding: 15px;\r\n  margin: auto;\n}\n.form .form-control {\r\n  position: relative;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n  height: auto;\r\n  padding: 10px;\r\n  font-size: 16px;\n}\n.form .form-control:focus {\r\n  z-index: 2;\n}\n.form input[id=\"title\"] {\r\n  margin-bottom: -1px;\r\n  border-bottom-right-radius: 0;\r\n  border-bottom-left-radius: 0;\n}\n.form input[id=\"description\"] {\r\n  margin-bottom: -1px;\r\n  border-top-left-radius: 0;\r\n  border-top-right-radius: 0;\r\n  border-bottom-right-radius: 0;\r\n  border-bottom-left-radius: 0;\n}\n.form textarea {\r\n  margin-bottom: -1px;\r\n  border-top-left-radius: 0;\r\n  border-top-right-radius: 0;\r\n  border-bottom-right-radius: 0;\r\n  border-bottom-left-radius: 0;\n}\n.form button {\r\n    margin-bottom: 10px;\r\n    border-top-left-radius: 0;\r\n    border-top-right-radius: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -48048,9 +48048,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover this post content!",
                 icon: "warning",
-                buttons: true,
-                dangerMode: true,
-                className: "red-bg"
+                buttons: true, // or {buttonsOptions}
+                dangerMode: true
+                // className: "bg-dark",
+                // closeOnClickOutside: false,
+                // closeOnEsc: false,
+                // timer: 3000,
             }).then(function (willDelete) {
                 if (willDelete) {
                     fetch("api/posts/" + id, {
@@ -48060,14 +48063,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         _this2.fetchPosts(); // fetch the posts again
                         // this.posts.splice(index, 1); // just remove post from posts array
                         swal("Poof! Your post has been deleted!", {
-                            icon: "success"
+                            icon: "success",
+                            timer: 3000
                         }); // SweetAlert with options
                     }).catch(function (err) {
-                        swal("Oops!", "Something went wrong!", "error"); // SweetAlert error message
+                        swal("Oops!", "Something went wrong!", {
+                            icon: "error",
+                            timer: 3000
+                        }); // SweetAlert error message
                         console.error(err);
                     });
                 } else {
-                    swal("It Ok!", "Your post is safe!"); // SweetAlert
+                    swal("It Ok!", "Your post is safe!", {
+                        timer: 3000,
+                        // className: "bg-primary",
+                        buttons: false // without button, alert close automaticly 
+                    }); // SweetAlert
                 }
             });
         },
@@ -48092,13 +48103,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return res.json();
                 }).then(function (res) {
                     console.log(res);
-                    swal("Good job!", "You added new post!", "success"); // SweetAlert
+                    swal("Good job!", "You added new post!", {
+                        icon: "success",
+                        timer: 3000
+                    }); // SweetAlert
                     _this3.fetchPosts();
                 }).then(function () {
                     _this3.post = {};
                     _this3.edit = false;
                 }).catch(function (err) {
-                    swal("Oops!", "Something went wrong!", "error"); // SweetAlert error message
+                    swal("Oops!", "Something went wrong!", {
+                        icon: "error",
+                        timer: 3000
+                    }); // SweetAlert error message
                     console.error(err);
                 });
             } else {
@@ -48113,12 +48130,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return res.json();
                 }).then(function (res) {
                     console.log(res);
-                    swal("Good job!", "You updated the post!", "success"); // SweetAlert
+                    swal("Good job!", "You updated the post!", {
+                        icon: "success",
+                        timer: 3000
+                    }); // SweetAlert
                 }).then(function () {
                     _this3.post = {};
                     _this3.edit = false;
                 }).catch(function (err) {
-                    swal("Oops!", "Something went wrong!", "error"); // SweetAlert error message
+                    swal("Oops!", "Something went wrong!", {
+                        icon: "error",
+                        timer: 3000
+                    }); // SweetAlert error message
                     console.error(err);
                 });
             }

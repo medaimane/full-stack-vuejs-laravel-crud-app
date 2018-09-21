@@ -146,9 +146,12 @@ export default {
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover this post content!",
                 icon: "warning",
-                buttons: true,
+                buttons: true,  // or {buttonsOptions}
                 dangerMode: true,
-                className: "red-bg",
+                // className: "bg-dark",
+                // closeOnClickOutside: false,
+                // closeOnEsc: false,
+                // timer: 3000,
             })
             .then((willDelete) => {
                 if (willDelete) {
@@ -161,14 +164,22 @@ export default {
                         // this.posts.splice(index, 1); // just remove post from posts array
                         swal("Poof! Your post has been deleted!", {
                             icon: "success",
+                            timer: 3000,
                         }); // SweetAlert with options
                     })
                     .catch(err => {
-                        swal("Oops!", "Something went wrong!", "error"); // SweetAlert error message
+                        swal("Oops!", "Something went wrong!", {
+                            icon:"error",
+                            timer: 3000,
+                        }); // SweetAlert error message
                         console.error(err);
                     });
                 } else {
-                    swal("It Ok!","Your post is safe!"); // SweetAlert
+                    swal("It Ok!","Your post is safe!", {
+                        timer: 3000,
+                        // className: "bg-primary",
+                        buttons: false, // without button, alert close automaticly 
+                    }); // SweetAlert
                 }
             });
         },
@@ -191,7 +202,10 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     console.log(res); 
-                    swal("Good job!", "You added new post!", "success"); // SweetAlert
+                    swal("Good job!", "You added new post!", {
+                        icon: "success",
+                        timer: 3000
+                    }); // SweetAlert
                     this.fetchPosts();
                 })
                 .then(() => { 
@@ -199,7 +213,10 @@ export default {
                     this.edit = false;
                 })
                 .catch(err => {
-                    swal("Oops!", "Something went wrong!", "error"); // SweetAlert error message
+                    swal("Oops!", "Something went wrong!", {
+                        icon: "error",
+                        timer: 3000
+                    }); // SweetAlert error message
                     console.error(err);
                 });
             } else {
@@ -214,14 +231,20 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     console.log(res);
-                    swal("Good job!", "You updated the post!", "success"); // SweetAlert
+                    swal("Good job!", "You updated the post!", {
+                        icon: "success",
+                        timer: 3000
+                    }); // SweetAlert
                 })
                 .then(() => { 
                     this.post = {};
                     this.edit = false;
                 })
                 .catch(err => {
-                    swal("Oops!", "Something went wrong!", "error"); // SweetAlert error message
+                    swal("Oops!", "Something went wrong!", {
+                        icon: "error",
+                        timer: 3000
+                    }); // SweetAlert error message
                     console.error(err);
                 });
             }
@@ -240,6 +263,14 @@ export default {
 </script>
 
 <style>
+/*
+ * SweetAlert Theming
+*/
+/* .swal-overlay {
+    background-image: url('/storage/background.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+} */
 
 /**
  * Form style

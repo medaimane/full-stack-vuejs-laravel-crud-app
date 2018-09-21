@@ -5,17 +5,11 @@
                 <h4>New post</h4>
             </div>
             <div>
-                <form class="form">
-                    <!-- <div class="form-group"> -->
-                        <input type="text" name="title" placeholder="Title" class="form-control">
-                    <!-- </div>
-                    <div class="form-group"> -->
-                        <input type="text" name="description" placeholder="Description" class="form-control">
-                    <!-- </div>
-                    <div class="form-group"> -->
-                        <textarea v-model="post.content" placeholder="Content" class="form-control"></textarea>
-                    <!-- </div> -->
-                        <button class="btn btn-outline-success mt-2" type="submit">Save</button>
+                <form @submit.prevent="storePost()" class="form">
+                    <input v-model="post.title" id="title" type="text" placeholder="Title" class="form-control">
+                    <input v-model="post.description" id="description" type="text" placeholder="Description" class="form-control">
+                    <textarea v-model="post.content" placeholder="Content" class="form-control"></textarea>
+                    <button class="btn btn-block btn-outline-success mt-2" type="submit" >Save</button>
                 </form>
             </div>
         </div>
@@ -26,7 +20,7 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
                     <li class="page-item" v-bind:class="[{disabled: !pagination.prev_page_url}]">
-                        <a class="page-link" href="#" @click="fetchPosts(pagination.prev_page_url)">
+                        <a class="page-link" href="#" v-on:click="fetchPosts(pagination.prev_page_url)">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                         </a>
@@ -51,7 +45,10 @@
                 <h2>{{post.title}}</h2>
                 <p class="text-justif">{{post.description}}</p>
                 <p class="text-muted">Written on {{post.created_at}} by user has id {{post.user_id}}</p>
-                <p><a class="float-right btn btn-sm btn-outline-danger" href="#" @click="deletePost(post.id, index)">Delete</a></p>
+                <div>
+                    <a class="btn btn-sm btn-outline-secondary" href="#" @click="editPost(post)">Update</a>
+                    <a class="btn btn-sm btn-outline-danger" href="#" @click="deletePost(post.id, index)">Delete</a>
+                </div>
             </div>
         </div>
         <hr>
@@ -65,7 +62,9 @@ export default {
             posts: [],
             post: {
                 id: '',
+                user_id: '',
                 title: '',
+                description: '',
                 body: ''
             },
             post_id: '',
@@ -105,12 +104,64 @@ export default {
             if(confirm('Are you sure!')) {
                 fetch(`api/posts/${id}`, {
                     method: 'delete'
-                }).then(res => {
+                })
+                .then(res => {
                     console.log(res);
                     alert('Article removed');
-                    // vue.fetchPosts(); // fetch the posts again
-                    this.posts.splice(index, 1); // just remove post from posts array
-                }).catch(err => console.error(err));
+                })
+                .then( _ => {
+                    this.fetchPosts(); // fetch the posts again
+                    // this.posts.splice(index, 1); // just remove post from posts array
+                })
+                .catch(err => console.error(err));
+            }
+        },
+        storePost() {
+            if (!this.edit) {
+                // add post
+                fetch('api/posts', {
+                    method: 'post',
+                    body: JSON.stringify(this.post),
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                    alert('New post added with success');
+                    this.fetchPosts();
+                })
+                .then(() => { 
+                    this.post = {};
+                    this.edit = false;
+                })
+                .catch(err => console.error(err));
+            } else {
+                // update post
+                fetch(`api/posts/${this.post.id}`, {
+                    method: 'put',
+                    body: JSON.stringify(this.post),
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                    alert('New post updated with success');
+                })
+                .then(() => { 
+                    this.post = {};
+                    this.edit = false;
+                })
+                .catch(err => console.error(err));
+            }
+        },
+        editPost(post) {
+            if(post) {
+                this.edit = true;
+                this.post = post;
             }
         }
     }
@@ -134,22 +185,29 @@ export default {
 .form .form-control:focus {
   z-index: 2;
 }
-.form input[name="title"] {
+.form input[id="title"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form input[name="description"] {
+.form input[id="description"] {
   margin-bottom: -1px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form input[name="content"] {
-  margin-bottom: 10px;
+.form textarea {
+  margin-bottom: -1px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form button {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 </style>
 

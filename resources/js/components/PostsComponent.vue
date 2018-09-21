@@ -46,7 +46,7 @@
                 <p class="text-justif">{{post.description}}</p>
                 <p class="text-muted">Written on {{post.created_at}} by user has id {{post.user_id}}</p>
                 <div>
-                    <a class="btn btn-sm btn-outline-secondary" href="#" @click="editPost(post)">Update</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="#" @click="editPost(post)">Edit</a>
                     <a class="btn btn-sm btn-outline-danger" href="#" @click="deletePost(post.id, index)">Delete</a>
                 </div>
             </div>
